@@ -10,170 +10,88 @@
 <style>
 *{box-sizing:border-box}
 body{
-    margin:0;
-    font-family:Georgia, serif;
-    background:radial-gradient(circle at top,#2a0b16,#0b0206);
-    color:#fff;
-    overflow-x:hidden;
+  margin:0;
+  font-family:Georgia, serif;
+  background:radial-gradient(circle at top,#2a0b16,#0b0206);
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* 🌙 MOON */
+/* 🌙 Moon */
 .moon{
-    position:fixed;
-    top:40px; right:40px;
-    width:120px; height:120px;
-    border-radius:50%;
-    background:radial-gradient(circle,#fff,#ffe0b3,#d4a373);
-    box-shadow:0 0 60px rgba(255,230,180,0.6);
-    animation:moonFloat 8s ease-in-out infinite;
-    z-index:1;
+  position:fixed;top:40px;right:40px;
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,#fff,#ffe0b3,#d4a373);
+  box-shadow:0 0 60px rgba(255,230,180,.6);
+  animation:float 8s ease-in-out infinite;
 }
-@keyframes moonFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(15px)}
-}
+@keyframes float{50%{transform:translateY(15px)}}
 
-/* 🔐 LOGIN */
+/* 🔐 Login */
 #lockScreen{
-    position:fixed; inset:0;
-    display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,#2b0814,#0b0206);
-    z-index:9999;
+  position:fixed;inset:0;
+  display:flex;justify-content:center;align-items:center;
+  background:#0b0206;z-index:9999;
 }
 .love-letter{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(20px);
-    padding:50px 40px;
-    border-radius:35px;
-    text-align:center;
-    width:90%; max-width:360px;
-    box-shadow:0 0 80px rgba(255,190,210,0.35);
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px);
+  padding:40px;border-radius:30px;
+  text-align:center;width:320px;
 }
-.love-letter h1{
-    font-family:"Dancing Script", cursive;
-    font-size:2.5rem;
-}
-.love-letter input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:25px;
-    text-align:center;
-}
-.love-letter button{
-    margin-top:20px;
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(135deg,#ffb3c6,#ffe0ea);
-    font-weight:bold;
-    cursor:pointer;
+input,button{
+  width:100%;padding:14px;margin-top:15px;
+  border:none;border-radius:25px;
 }
 
-/* ❤️ HEART FALL */
-.heart{
-    position:fixed;
-    top:-20px;
-    animation:fall 10s linear infinite;
-}
-@keyframes fall{to{transform:translateY(120vh)}}
-
-/* 📜 MAIN */
+/* 📜 Main */
 .container{
-    max-width:950px;
-    margin:auto;
-    padding:70px 20px;
-    display:none;
+  max-width:950px;
+  margin:auto;
+  padding:70px 20px;
+  display:none;
 }
 
-/* ✨ SCROLL REVEAL */
+/* ✨ Scroll Animation */
 .reveal{
-    opacity:0;
-    transform:translateY(60px);
-    transition:all 1.6s ease;
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1.4s ease;
 }
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .section{
-    background:rgba(255,255,255,0.09);
-    padding:40px;
-    border-radius:30px;
-    margin-bottom:120px;
-    text-align:center;
+  background:rgba(255,255,255,.1);
+  padding:40px;
+  border-radius:30px;
+  margin-bottom:120px;
+  text-align:center;
 }
 
-.nameReveal{
-    font-family:"Dancing Script", cursive;
-    font-size:2.6rem;
-}
-.subtitle{opacity:0.85;font-style:italic}
-
-/* 🖼️ GALLERY */
+/* 🖼 Gallery */
 .gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:28px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
 }
-.gallery img,.love-item img{
-    width:100%;
-    height:260px;
-    object-fit:contain;
-    background:#fff;
-    padding:12px;
-    border-radius:22px;
-    cursor:pointer;
-    transition:.8s;
+.gallery img{
+  width:100%;height:260px;
+  object-fit:contain;
+  background:#fff;padding:10px;
+  border-radius:20px;
+  transition:.6s;
 }
-.gallery img:hover,.love-item img:hover{
-    transform:scale(1.05);
-}
+.gallery img:hover{transform:scale(1.05)}
 
-.love-row{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
+/* ❤️ Hearts */
+.heart{
+  position:fixed;top:-20px;
+  animation:fall 10s linear infinite;
 }
-.caption{font-style:italic;color:#ffe0ea}
-
-/* 📸 LIGHTBOX */
-#lightbox{
-    position:fixed; inset:0;
-    background:rgba(0,0,0,.9);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
-}
-#lightbox img{max-width:95%;max-height:95%;border-radius:22px}
-
-/* 💍 */
-.secret-ring{
-    position:fixed;
-    bottom:22px; left:22px;
-    font-size:34px;
-    cursor:pointer;
-}
-#lovePopup,#duaPage,#nikahPage{
-    position:fixed; inset:0;
-    background:rgba(0,0,0,.7);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
-}
-.popup-box,.dua-box{
-    background:#fff;
-    color:#4a0d1e;
-    padding:40px;
-    border-radius:30px;
-    text-align:center;
-    font-family:"Dancing Script", cursive;
-}
+@keyframes fall{to{transform:translateY(120vh)}}
 </style>
 </head>
 
@@ -183,104 +101,74 @@ body{
 
 <div id="lockScreen">
   <div class="love-letter">
-    <h1>My Zunu 🤍</h1>
-    <input id="password" type="password" placeholder="Our secret…">
+    <h2>My Zunu 🤍</h2>
+    <input id="password" placeholder="Our secret">
     <button onclick="unlock()">Open My Heart</button>
   </div>
 </div>
 
 <div class="container" id="main">
 
-<section class="section reveal">
-  <div class="nameReveal">Zaibunissa 🤍</div>
-  <p class="subtitle">You were written in my destiny by Allah 🌙</p>
-</section>
+  <section class="section reveal">
+    <h1 style="font-family:Dancing Script">Zaibunissa 🤍</h1>
+    <p>You were written in my destiny by Allah 🌙</p>
+  </section>
 
-<section class="section reveal">
-  <h2>Moments My Heart Never Forgot 🫂</h2>
-  <div class="gallery">
-    <img src="images/ff.jpeg" onclick="openImage(this)">
-    <img src="images/boat.jpeg" onclick="openImage(this)">
-    <img src="images/h.jpeg" onclick="openImage(this)">
-    <img src="images/3.jpeg" onclick="openImage(this)">
-  </div>
-</section>
+  <section class="section reveal">
+    <h2>Moments My Heart Never Forgot 🫂</h2>
+    <div class="gallery">
+      <img src="images/ff.jpeg">
+      <img src="images/boat.jpeg">
+      <img src="images/h.jpeg">
+      <img src="images/3.jpeg">
+    </div>
+  </section>
 
-<section class="section reveal">
-  <h2>✨ The Day Allah Joined Our Hearts ✨</h2>
-  <div class="love-row">
-    <div class="love-item">
-      <img src="images/hh.jpeg" onclick="openImage(this)">
-      <div class="caption">You are my comfort 🤍</div>
+  <section class="section reveal">
+    <h2>The Day Allah Joined Our Hearts ✨</h2>
+    <div class="gallery">
+      <img src="images/hh.jpeg">
+      <img src="images/bi.jpeg">
     </div>
-    <div class="love-item">
-      <img src="images/bi.jpeg" onclick="openImage(this)">
-      <div class="caption">My heart chose you 🫂</div>
-    </div>
-  </div>
-</section>
+  </section>
 
 </div>
-
-<div class="secret-ring" onclick="lovePopup.style.display='flex'">💍</div>
-
-<div id="lovePopup" onclick="this.style.display='none'">
-  <div class="popup-box" onclick="event.stopPropagation()">
-    <h2>My Truth 💌</h2>
-    <p>Will you accept me as your husband?</p>
-    <button onclick="yesAnswer()">Yes 🤍</button>
-    <button onclick="alert('I will still pray for you 🤍')">No</button>
-  </div>
-</div>
-
-<div id="duaPage"><div class="dua-box">🤲 Ya Allah unite us in Nikah 🤍</div></div>
-<div id="nikahPage"><div class="dua-box">✨ Nikah — A promise before Allah ✨</div></div>
-
-<div id="lightbox" onclick="this.style.display='none'"></div>
 
 <script>
 function unlock(){
   if(password.value==="0318"){
     lockScreen.style.display="none";
     main.style.display="block";
-    revealOnScroll();
-  }else alert("Only hearts know this 🤍");
+    setTimeout(startReveal,300); // 👈 IMPORTANT
+  }else{
+    alert("Only hearts know this 🤍");
+  }
 }
 
-function openImage(img){
-  lightbox.innerHTML=`<img src="${img.src}">`;
-  lightbox.style.display="flex";
+/* ✨ Reveal on scroll */
+function startReveal(){
+  const items=document.querySelectorAll(".reveal");
+  window.addEventListener("scroll",()=>{
+    items.forEach(el=>{
+      const top=el.getBoundingClientRect().top;
+      if(top < window.innerHeight - 100){
+        el.classList.add("active");
+      }
+    });
+  });
+  window.dispatchEvent(new Event("scroll")); // trigger once
 }
 
-function yesAnswer(){
-  lovePopup.style.display="none";
-  duaPage.style.display="flex";
-  setTimeout(()=>{
-    duaPage.style.display="none";
-    nikahPage.style.display="flex";
-  },5000);
-}
-
-/* ❤️ HEART FALL */
+/* ❤️ Hearts */
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="🤍";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(14+Math.random()*22)+"px";
+  h.style.fontSize=(15+Math.random()*20)+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),10000);
 },700);
-
-/* ✨ SCROLL REVEAL LOGIC */
-function revealOnScroll(){
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add("show");
-    });
-  },{threshold:0.2});
-  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-}
 </script>
 
 </body>
