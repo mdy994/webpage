@@ -9,6 +9,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:Georgia, serif;
@@ -17,7 +18,7 @@ body{
     overflow-x:hidden;
 }
 
-/* MOON */
+/* 🌙 MOON */
 .moon{
     position:fixed;
     top:30px;
@@ -28,6 +29,7 @@ body{
     background:radial-gradient(circle,#fff,#ffe0b3,#d4a373);
     box-shadow:0 0 60px rgba(255,230,180,0.6);
     animation:moonFloat 8s ease-in-out infinite;
+    z-index:1;
 }
 @keyframes moonFloat{
     0%,100%{transform:translateY(0)}
@@ -52,15 +54,17 @@ body{
     text-align:center;
     width:90%;
     max-width:360px;
+    animation:loginPop 1.6s ease;
+}
+@keyframes loginPop{
+    from{opacity:0;transform:scale(0.85)}
+    to{opacity:1;transform:scale(1)}
 }
 .love-letter h1{
     font-family:"Dancing Script", cursive;
     font-size:2.4rem;
 }
-.love-letter p{
-    font-style:italic;
-    opacity:0.9;
-}
+.love-letter p{font-style:italic;opacity:.9}
 .love-letter input{
     width:100%;
     padding:14px;
@@ -86,7 +90,7 @@ body{
     padding:80px 20px;
     text-align:center;
     display:none;
-    animation:fadeIn 2s ease;
+    animation:fadeIn 2.5s ease;
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
@@ -96,6 +100,22 @@ body{
     border-radius:30px;
     margin-bottom:90px;
 }
+
+/* TYPE NAME */
+.nameReveal{
+    font-family:"Dancing Script", cursive;
+    font-size:2.6rem;
+    letter-spacing:3px;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:2px solid #fff;
+    width:0;
+    animation:type 4s steps(22) forwards;
+    margin:auto;
+}
+@keyframes type{to{width:100%}}
+
+.subtitle{opacity:.85;font-style:italic;margin:20px 0}
 
 /* GALLERY */
 .gallery{
@@ -110,7 +130,20 @@ body{
     background:#fff;
     padding:10px;
     border-radius:22px;
+    transition:.7s;
 }
+.gallery img:hover{
+    transform:translateY(-10px) scale(1.05);
+}
+
+/* HEART FALL */
+.heart{
+    position:fixed;
+    top:-20px;
+    animation:fall 10s linear infinite;
+    opacity:.85;
+}
+@keyframes fall{to{transform:translateY(120vh)}}
 
 /* AUDIO HIDDEN */
 audio{display:none}
@@ -136,12 +169,12 @@ audio{display:none}
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div class="container" id="main">
 
 <section class="section">
-  <h2>Zaibunissa 🤍</h2>
-  <p>You were written in my destiny by Allah 🌙</p>
+  <div class="nameReveal">Zaibunissa 🤍</div>
+  <div class="subtitle">You were written in my destiny by Allah 🌙</div>
   <p>“And We created you in pairs.” — Qur’an 78:8</p>
 </section>
 
@@ -165,15 +198,16 @@ audio{display:none}
 </div>
 
 <script>
+const bgMusic = document.getElementById("bgMusic");
+
 function unlock(){
-    const password = document.getElementById("password").value;
-    const bgMusic = document.getElementById("bgMusic");
+    const pass = document.getElementById("password").value;
 
-    if(password === "0318"){
-        lockScreen.style.display = "none";
-        main.style.display = "block";
+    if(pass === "0318"){
+        lockScreen.style.display="none";
+        main.style.display="block";
 
-        // Mobile + Chrome safe audio start
+        // Chrome + Android SAFE audio start
         bgMusic.volume = 0;
         bgMusic.play().then(()=>{
             let v = 0;
@@ -182,13 +216,23 @@ function unlock(){
                     v += 0.02;
                     bgMusic.volume = v;
                 } else clearInterval(fade);
-            }, 200);
+            },200);
         });
-
     } else {
         alert("Only hearts know this 🤍");
     }
 }
+
+/* HEART FALL */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="🤍";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*22)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+},650);
 </script>
 
 </body>
