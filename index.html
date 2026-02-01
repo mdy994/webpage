@@ -103,14 +103,12 @@ body{
     text-align:center;
     display:none;
     animation:fadeIn 2.5s;
-    scroll-snap-type:y mandatory;
 }
 @keyframes fadeIn{
     from{opacity:0}
     to{opacity:1}
 }
 .page{
-    scroll-snap-align:start;
     margin-bottom:120px;
 }
 .subtitle{
@@ -252,6 +250,7 @@ body{
     text-align:center;
     font-family:"Dancing Script", cursive;
 }
+
 audio{display:none}
 </style>
 </head>
@@ -260,10 +259,12 @@ audio{display:none}
 
 <div class="moon"></div>
 
+<!-- 🎵 FIXED AUDIO -->
 <audio id="bgMusic">
     <source src="audio/to.mp3" type="audio/mpeg">
 </audio>
 
+<!-- LOGIN -->
 <div id="lockScreen">
     <div class="love-letter">
         <h1>My Zunu 🤍</h1>
@@ -273,13 +274,61 @@ audio{display:none}
     </div>
 </div>
 
+<!-- MAIN CONTENT -->
 <div class="container" id="main">
-    <section class="section page">
-        <div class="nameReveal">Zaibunissa 🤍</div>
-        <div class="subtitle">You were written in my destiny by Allah 🌙</div>
-        <div class="ayah">“And We created you in pairs.” — Qur’an 78:8</div>
-        <div class="thought">Loving you feels like a dua Allah already accepted 🤍</div>
-    </section>
+
+<section class="section page">
+    <div class="nameReveal">Zaibunissa 🤍</div>
+    <div class="subtitle">You were written in my destiny by Allah 🌙</div>
+    <div class="ayah">“And We created you in pairs.” — Qur’an 78:8</div>
+    <div class="thought">Loving you feels like a dua Allah already accepted 🤍</div>
+</section>
+
+<section class="section page">
+    <h2>Moments My Heart Never Forgot 🫂</h2>
+    <div class="gallery">
+        <img src="images/ff.jpeg" onclick="openImage(this)">
+        <img src="images/boat.jpeg" onclick="openImage(this)">
+        <img src="images/h.jpeg" onclick="openImage(this)">
+        <img src="images/3.jpeg" onclick="openImage(this)">
+        <img src="images/bis.jpeg" onclick="openImage(this)">
+        <img src="images/rp.jpeg" onclick="openImage(this)">
+        <img src="images/food.jpeg" onclick="openImage(this)">
+        <img src="images/bs.jpeg" onclick="openImage(this)">
+        <img src="images/bish.jpeg" onclick="openImage(this)">
+    </div>
+</section>
+
+<section class="section page">
+    <h2>✨ The Day Allah Joined Our Hearts ✨</h2>
+    <div class="love-row">
+        <div class="love-item">
+            <img src="images/hh.jpeg" onclick="openImage(this)">
+            <div class="caption">You are my comfort zone 🤍</div>
+        </div>
+        <div class="love-item">
+            <img src="images/bi.jpeg" onclick="openImage(this)">
+            <div class="caption">My heart chose you silently 🫂</div>
+        </div>
+    </div>
+</section>
+
+<section class="section page">
+    <h2>You asked me why I love you 🤍</h2>
+    <div class="note">
+        I am a very lucky person because you entered my life.<br>
+        You are the only one who accepts me without remarks,<br>
+        who sees my flaws and still chooses me with love.<br><br>
+
+        With you, I feel safe, understood, and at peace.<br>
+        You love me unconditionally, without expectations,<br>
+        and that kind of love is a rare blessing from Allah.<br><br>
+
+        If love is a gift,<br>
+        then you are the one Allah gifted to my heart 🤍
+    </div>
+</section>
+
 </div>
 
 <div class="secret-ring" onclick="lovePopup.style.display='flex'">💍</div>
@@ -293,13 +342,8 @@ audio{display:none}
     </div>
 </div>
 
-<div id="duaPage">
-    <div class="dua-box">🤲 Ya Allah, unite us in nikah and bless our future 🤍</div>
-</div>
-
-<div id="nikahPage">
-    <div class="dua-box">✨ Nikah — A promise before Allah ✨</div>
-</div>
+<div id="duaPage"><div class="dua-box">🤲 Ya Allah, unite us in nikah and bless our future 🤍</div></div>
+<div id="nikahPage"><div class="dua-box">✨ Nikah — A promise before Allah ✨</div></div>
 
 <div id="lightbox" onclick="this.style.display='none'"></div>
 
@@ -307,18 +351,18 @@ audio{display:none}
 const bgMusic = document.getElementById("bgMusic");
 
 function unlock(){
-    if(password.value === "0318"){
+    if(password.value==="0318"){
         lockScreen.style.display="none";
         main.style.display="block";
 
-        bgMusic.volume = 0;
+        bgMusic.volume=0;
         bgMusic.play();
 
-        let v = 0;
-        const fade = setInterval(()=>{
-            if(v < 0.7){
-                v += 0.02;
-                bgMusic.volume = v;
+        let v=0;
+        const fade=setInterval(()=>{
+            if(v<0.7){
+                v+=0.02;
+                bgMusic.volume=v;
             }else clearInterval(fade);
         },200);
     }else{
@@ -327,7 +371,7 @@ function unlock(){
 }
 
 function openImage(img){
-    lightbox.innerHTML = `<img src="${img.src}">`;
+    lightbox.innerHTML=`<img src="${img.src}">`;
     lightbox.style.display="flex";
 }
 
