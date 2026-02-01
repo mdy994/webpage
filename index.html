@@ -244,9 +244,13 @@ audio{display:none}
 
 <div class="moon"></div>
 
-<audio controls>
-  <source src="audio/to.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgAudio" src="audio/to.mp3"></audio>
+
+<script>
+  document.addEventListener("click", () => {
+    document.getElementById("bgAudio").play();
+  }, { once: true });
+</script>
 
 <div id="lockScreen">
     <div class="love-letter">
@@ -376,5 +380,6 @@ setInterval(()=>{
 
 </body>
 </html>
+
 
 
