@@ -9,6 +9,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:Georgia, serif;
@@ -17,7 +18,7 @@ body{
     overflow-x:hidden;
 }
 
-/* moon */
+/* 🌙 MOON */
 .moon{
     position:fixed;
     top:40px;
@@ -28,65 +29,146 @@ body{
     background:radial-gradient(circle,#fff,#ffe0b3,#d4a373);
     box-shadow:0 0 60px rgba(255,230,180,0.6);
     animation:moonFloat 8s ease-in-out infinite;
+    z-index:1;
 }
 @keyframes moonFloat{
+    0%,100%{transform:translateY(0)}
     50%{transform:translateY(15px)}
 }
 
-/* login */
+/* LOGIN */
 #lockScreen{
     position:fixed;
     inset:0;
     display:flex;
-    justify-content:center;
     align-items:center;
-    background:#0b0206;
+    justify-content:center;
+    background:linear-gradient(135deg,#2b0814,#0b0206);
     z-index:9999;
 }
 .love-letter{
-    background:rgba(255,255,255,.15);
+    background:rgba(255,255,255,0.15);
     backdrop-filter:blur(20px);
-    padding:40px;
-    border-radius:30px;
+    padding:50px 40px;
+    border-radius:35px;
     text-align:center;
     width:90%;
     max-width:360px;
+    box-shadow:0 0 80px rgba(255,190,210,0.35);
+    animation:loginPop 1.8s ease;
+}
+@keyframes loginPop{
+    from{opacity:0;transform:scale(0.8)}
+    to{opacity:1;transform:scale(1)}
 }
 .love-letter h1{
-    font-family:"Dancing Script",cursive;
+    font-family:"Dancing Script", cursive;
     font-size:2.5rem;
 }
-.love-letter input,
-.love-letter button{
+.love-letter p{font-style:italic;opacity:0.9}
+.love-letter input{
     width:100%;
     padding:14px;
     border:none;
     border-radius:25px;
-    margin-top:15px;
+    text-align:center;
+}
+.love-letter button{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ffb3c6,#ffe0ea);
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* main */
+/* HEART FALL */
+.heart{
+    position:fixed;
+    top:-20px;
+    animation:fall 10s linear infinite;
+    opacity:0.85;
+}
+@keyframes fall{
+    to{transform:translateY(120vh)}
+}
+
+/* MAIN */
 .container{
-    display:none;
     max-width:950px;
     margin:auto;
     padding:70px 20px;
     text-align:center;
+    display:none;
+    animation:fadeIn 2.5s;
+    scroll-snap-type:y mandatory;
 }
-.section{
-    background:rgba(255,255,255,.08);
-    padding:40px;
-    border-radius:30px;
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+.page{
+    scroll-snap-align:start;
     margin-bottom:120px;
 }
+.subtitle{
+    font-style:italic;
+    opacity:0.85;
+    margin-bottom:40px;
+}
 
-/* gallery */
+/* NAME */
+.nameReveal{
+    font-family:"Dancing Script", cursive;
+    font-size:2.6rem;
+    letter-spacing:3px;
+    animation:type 4s steps(22) forwards;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:2px solid #fff;
+    width:0;
+    margin:auto;
+}
+@keyframes type{
+    to{width:100%}
+}
+
+/* AYAH */
+.ayah{
+    margin:40px auto;
+    max-width:700px;
+    font-style:italic;
+    opacity:0;
+    animation:ayahFade 3s forwards;
+    animation-delay:3s;
+}
+@keyframes ayahFade{
+    to{opacity:0.9}
+}
+.thought{
+    font-family:"Dancing Script", cursive;
+    font-size:1.6rem;
+    color:#ffd6e0;
+    margin:30px 0;
+}
+
+/* SECTION */
+.section{
+    background:rgba(255,255,255,0.09);
+    padding:40px;
+    border-radius:30px;
+}
+
+/* GALLERY */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:28px;
 }
-.gallery img{
+.gallery img,
+.love-item img{
     width:100%;
     height:260px;
     object-fit:contain;
@@ -94,13 +176,40 @@ body{
     padding:12px;
     border-radius:22px;
     cursor:pointer;
+    transition:.8s;
+}
+.gallery img:hover,
+.love-item img:hover{
+    transform:translateY(-12px) scale(1.05);
 }
 
-/* lightbox */
+/* LOVE DAY */
+.love-row{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+.love-item{max-width:280px}
+.caption{
+    margin-top:12px;
+    font-style:italic;
+    color:#ffe0ea;
+}
+
+/* NOTE */
+.note{
+    font-family:"Playfair Display", serif;
+    font-size:1.4rem;
+    line-height:1.8;
+    color:#ffe0ea;
+}
+
+/* LIGHTBOX */
 #lightbox{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.9);
+    background:rgba(0,0,0,0.9);
     display:none;
     justify-content:center;
     align-items:center;
@@ -109,9 +218,40 @@ body{
 #lightbox img{
     max-width:95%;
     max-height:95%;
-    border-radius:20px;
+    border-radius:22px;
 }
 
+/* 💍 */
+.secret-ring{
+    position:fixed;
+    bottom:22px;
+    left:22px;
+    font-size:34px;
+    cursor:pointer;
+}
+
+/* POPUPS */
+#lovePopup,
+#duaPage,
+#nikahPage{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+.popup-box,
+.dua-box{
+    background:#fff;
+    color:#4a0d1e;
+    padding:40px;
+    border-radius:30px;
+    max-width:520px;
+    text-align:center;
+    font-family:"Dancing Script", cursive;
+}
 audio{display:none}
 </style>
 </head>
@@ -121,39 +261,44 @@ audio{display:none}
 <div class="moon"></div>
 
 <audio id="bgMusic">
-  <source src="audio/to.mp3" type="audio/mpeg">
+    <source src="audio/to.mp3" type="audio/mpeg">
 </audio>
 
-<!-- LOGIN -->
 <div id="lockScreen">
-  <div class="love-letter">
-    <h1>My Zunu 🤍</h1>
-    <p>Two souls, one destiny written by Allah</p>
-    <input id="password" type="password" placeholder="Our secret…">
-    <button onclick="unlock()">Open My Heart</button>
-  </div>
+    <div class="love-letter">
+        <h1>My Zunu 🤍</h1>
+        <p>Two souls, one destiny written by Allah</p>
+        <input type="password" id="password" placeholder="Our secret…">
+        <button onclick="unlock()">Open My Heart</button>
+    </div>
 </div>
 
-<!-- MAIN -->
 <div class="container" id="main">
+    <section class="section page">
+        <div class="nameReveal">Zaibunissa 🤍</div>
+        <div class="subtitle">You were written in my destiny by Allah 🌙</div>
+        <div class="ayah">“And We created you in pairs.” — Qur’an 78:8</div>
+        <div class="thought">Loving you feels like a dua Allah already accepted 🤍</div>
+    </section>
+</div>
 
-<section class="section">
-  <h2>Zaibunissa 🤍</h2>
-  <p>You were written in my destiny by Allah 🌙</p>
-  <p><i>“And We created you in pairs.” — Qur’an 78:8</i></p>
-</section>
+<div class="secret-ring" onclick="lovePopup.style.display='flex'">💍</div>
 
-<section class="section">
-  <h2>Moments My Heart Never Forgot 🫂</h2>
-  <div class="gallery">
-    <img src="images/ff.jpeg" onclick="openImage(this)">
-    <img src="images/boat.jpeg" onclick="openImage(this)">
-    <img src="images/h.jpeg" onclick="openImage(this)">
-    <img src="images/3.jpeg" onclick="openImage(this)">
-    <img src="images/bis.jpeg" onclick="openImage(this)">
-  </div>
-</section>
+<div id="lovePopup" onclick="this.style.display='none'">
+    <div class="popup-box" onclick="event.stopPropagation()">
+        <h2>My Truth 💌</h2>
+        <p>Will you accept me as your husband? 🤍</p>
+        <button onclick="yesAnswer()">Yes 🤍</button>
+        <button onclick="alert('I will still pray for you 🤍')">No</button>
+    </div>
+</div>
 
+<div id="duaPage">
+    <div class="dua-box">🤲 Ya Allah, unite us in nikah and bless our future 🤍</div>
+</div>
+
+<div id="nikahPage">
+    <div class="dua-box">✨ Nikah — A promise before Allah ✨</div>
 </div>
 
 <div id="lightbox" onclick="this.style.display='none'"></div>
@@ -162,19 +307,49 @@ audio{display:none}
 const bgMusic = document.getElementById("bgMusic");
 
 function unlock(){
-  if(password.value==="0318"){
-    lockScreen.style.display="none";
-    main.style.display="block";
-    bgMusic.play();
-  }else{
-    alert("Only hearts know this 🤍");
-  }
+    if(password.value === "0318"){
+        lockScreen.style.display="none";
+        main.style.display="block";
+
+        bgMusic.volume = 0;
+        bgMusic.play();
+
+        let v = 0;
+        const fade = setInterval(()=>{
+            if(v < 0.7){
+                v += 0.02;
+                bgMusic.volume = v;
+            }else clearInterval(fade);
+        },200);
+    }else{
+        alert("Only hearts know this 🤍");
+    }
 }
 
 function openImage(img){
-  lightbox.innerHTML=`<img src="${img.src}">`;
-  lightbox.style.display="flex";
+    lightbox.innerHTML = `<img src="${img.src}">`;
+    lightbox.style.display="flex";
 }
+
+function yesAnswer(){
+    lovePopup.style.display="none";
+    duaPage.style.display="flex";
+    setTimeout(()=>{
+        duaPage.style.display="none";
+        nikahPage.style.display="flex";
+    },5000);
+}
+
+/* HEART FALL */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="🤍";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*22)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+},650);
 </script>
 
 </body>
